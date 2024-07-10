@@ -61,13 +61,11 @@ public class APIJsonReceive {
     }
 
     // json의 data를 parsing후 container에 담기
-    public DataContainer getDataContainer(String json) {
-
+    public DTOWifi getDataContainer(String json) {
         // Create a Gson object
         Gson gson = new Gson();
-
         // Deserialize the JSON string into a WifiDataContainer object
-            DataContainer datacontainer = gson.fromJson(json, DataContainer.class);
+            DTOWifi datacontainer = gson.fromJson(json, DTOWifi.class);
 
 
 

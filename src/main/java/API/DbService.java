@@ -7,6 +7,12 @@ import java.util.List;
 
 public class DbService {
 
+    private static DbService instance = new DbService();
+
+    public static DbService getInstance() {
+        return instance;
+    }
+
 
     public void Dbdelete() {
         String url = "jdbc:mariadb://localhost:3306/test1";
@@ -100,7 +106,10 @@ public class DbService {
     }
 
 
-    public void DbInsert(DataContainer dataContainer) {
+
+    // insert method
+
+    public void dbWifiInsert(DTOWifi DTOWifi) {
         String url = "jdbc:mariadb://localhost:3306/seoulwifi";
         String user = "wifiuser";
         String DBpassword = "!tkdghk6226";
@@ -115,12 +124,13 @@ public class DbService {
 
             int affected = 0;
 
-            String sql = "INSERT INTO wifiinfo (X_SWIFI_MGR_NO, X_SWIFI_WRDOFC, X_SWIFI_MAIN_NM, X_SWIFI_ADRES1, X_SWIFI_ADRES2, X_SWIFI_INSTL_FLOOR, X_SWIFI_INSTL_TY, X_SWIFI_INSTL_MBY, X_SWIFI_SVC_SE, X_SWIFI_CMCWR, X_SWIFI_CNSTC_YEAR, X_SWIFI_INOUT_DOOR, X_SWIFI_REMARS3, LAT, LNT, WORK_DTTM) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+            String sql = "INSERT INTO wifiinfo (X_SWIFI_MGR_NO, X_SWIFI_WRDOFC, X_SWIFI_MAIN_NM, X_SWIFI_ADRES1, X_SWIFI_ADRES2, X_SWIFI_INSTL_FLOOR, X_SWIFI_INSTL_TY, X_SWIFI_INSTL_MBY, X_SWIFI_SVC_SE, X_SWIFI_CMCWR, X_SWIFI_CNSTC_YEAR, X_SWIFI_INOUT_DOOR, X_SWIFI_REMARS3, LAT, LNT, WORK_DTTM) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
             preparedStatement = connection.prepareStatement(sql);
 
 
-            List<DataContainer.WifiInfo> wifiInfos = dataContainer.getTbPublicWifiInfo().getList();
-            for (DataContainer.WifiInfo wifiInfo : wifiInfos) {
+            List<DTOWifi.WifiInfo> wifiInfos = DTOWifi.getTbPublicWifiInfo().getList();
+            for (DTOWifi.WifiInfo wifiInfo : wifiInfos) {
                 preparedStatement.setString(1, wifiInfo.getX_SWIFI_MGR_NO());
                 preparedStatement.setString(2, wifiInfo.getX_SWIFI_WRDOFC());
                 preparedStatement.setString(3, wifiInfo.getX_SWIFI_MAIN_NM());
@@ -148,20 +158,27 @@ public class DbService {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
 
-    public DataContainer DbSelect() {
+    // select method
+
+
+
+    public DTOWifi wifiCloseSelect(String tablename, int pagenum) {
+    return null;
+    }
+
+    public DTOWifi WifiCloseSelect(String LAT, String LTD, String tablename, int pagenum) {
         String url = "jdbc:mariadb://localhost:3306/seoulwifi";
+
         String user = "wifiuser";
         String DBpassword = "!tkdghk6226";
 
 
-        DataContainer dataContainer = new DataContainer();
-        DataContainer.TbPublicWifiInfo tbPublicWifiInfo = new DataContainer.TbPublicWifiInfo();
-        List<DataContainer.WifiInfo> wifiInfos = new LinkedList<DataContainer.WifiInfo>();
+        DTOWifi DTOWifi = new DTOWifi();
+        DTOWifi.TbPublicWifiInfo tbPublicWifiInfo = new DTOWifi.TbPublicWifiInfo();
+        List<DTOWifi.WifiInfo> wifiInfos = new LinkedList<DTOWifi.WifiInfo>();
 
 
         try {
@@ -177,18 +194,20 @@ public class DbService {
         try {
             connection = DriverManager.getConnection(url, user, DBpassword);
 
-            String sql = "select *\n" +
-                    "from wifiinfo \n" +
-                    "limit 20";
+            String sql = String.format("SELECT \n" +
+                    " SQRT(POW(LAT - %s, 2) + POW(LNT - -%s, 2)) AS distance,\n" +
+                    " w.*\n" +
+                    "FROM %s w\n" +
+                    "ORDER BY distance\n" +
+                    "LIMIT %d;",LAT,LTD,tablename,pagenum);
 
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                DataContainer.WifiInfo wifiInfo = new DataContainer.WifiInfo();
+                DTOWifi.WifiInfo wifiInfo = new DTOWifi.WifiInfo();
 
                 wifiInfo.setX_SWIFI_MGR_NO(resultSet.getString("X_SWIFI_MGR_NO"));
-                System.out.println(wifiInfo.getX_SWIFI_MGR_NO());
                 wifiInfo.setX_SWIFI_WRDOFC(resultSet.getString("X_SWIFI_WRDOFC"));
                 wifiInfo.setX_SWIFI_MAIN_NM(resultSet.getString("X_SWIFI_MAIN_NM"));
                 wifiInfo.setX_SWIFI_ADRES1(resultSet.getString("X_SWIFI_ADRES1"));
@@ -207,7 +226,7 @@ public class DbService {
                 wifiInfos.add(wifiInfo);
             }
             tbPublicWifiInfo.setList(wifiInfos);
-            dataContainer.setTbPublicWifiInfo(tbPublicWifiInfo);
+            DTOWifi.setTbPublicWifiInfo(tbPublicWifiInfo);
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -238,7 +257,99 @@ public class DbService {
 
 
         }
-        return dataContainer;
+        return DTOWifi;
+    }
+
+    public DTOWifi WifiOneSelect(String tablename, int pagenum, String X_SWIFI_MGR_NO) {
+        String url = "jdbc:mariadb://localhost:3306/seoulwifi";
+        String user = "wifiuser";
+        String DBpassword = "!tkdghk6226";
+
+
+        DTOWifi DTOWifi = new DTOWifi();
+        DTOWifi.TbPublicWifiInfo tbPublicWifiInfo = new DTOWifi.TbPublicWifiInfo();
+        List<DTOWifi.WifiInfo> wifiInfos = new LinkedList<DTOWifi.WifiInfo>();
+
+
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = DriverManager.getConnection(url, user, DBpassword);
+
+            String sql = "select *\n" +
+                    "from " + tablename +" "+
+                    "Where X_SWIFI_MGR_NO ="+
+                    X_SWIFI_MGR_NO +
+                    "\nlimit " + pagenum;
+
+            preparedStatement = connection.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                DTOWifi.WifiInfo wifiInfo = new DTOWifi.WifiInfo();
+
+                wifiInfo.setX_SWIFI_MGR_NO(resultSet.getString("X_SWIFI_MGR_NO"));
+                wifiInfo.setX_SWIFI_WRDOFC(resultSet.getString("X_SWIFI_WRDOFC"));
+                wifiInfo.setX_SWIFI_MAIN_NM(resultSet.getString("X_SWIFI_MAIN_NM"));
+                wifiInfo.setX_SWIFI_ADRES1(resultSet.getString("X_SWIFI_ADRES1"));
+                wifiInfo.setX_SWIFI_ADRES2(resultSet.getString("X_SWIFI_ADRES2"));
+                wifiInfo.setX_SWIFI_INSTL_FLOOR(resultSet.getString("X_SWIFI_INSTL_FLOOR"));
+                wifiInfo.setX_SWIFI_INSTL_TY(resultSet.getString("X_SWIFI_INSTL_TY"));
+                wifiInfo.setX_SWIFI_INSTL_MBY(resultSet.getString("X_SWIFI_INSTL_MBY"));
+                wifiInfo.setX_SWIFI_SVC_SE(resultSet.getString("X_SWIFI_SVC_SE"));
+                wifiInfo.setX_SWIFI_CMCWR(resultSet.getString("X_SWIFI_CMCWR"));
+                wifiInfo.setX_SWIFI_CNSTC_YEAR(resultSet.getInt("X_SWIFI_CNSTC_YEAR"));
+                wifiInfo.setX_SWIFI_INOUT_DOOR(resultSet.getString("X_SWIFI_INOUT_DOOR"));
+                wifiInfo.setX_SWIFI_REMARS3(resultSet.getString("X_SWIFI_REMARS3"));
+                wifiInfo.setLAT(resultSet.getDouble("LAT"));
+                wifiInfo.setLNT(resultSet.getDouble("LNT"));
+                wifiInfo.setWORK_DTTM(resultSet.getString("WORK_DTTM"));
+                wifiInfos.add(wifiInfo);
+            }
+            tbPublicWifiInfo.setList(wifiInfos);
+            DTOWifi.setTbPublicWifiInfo(tbPublicWifiInfo);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+
+            try {
+                if (resultSet != null && !resultSet.isClosed()) {
+                    resultSet.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+            try {
+                if (preparedStatement != null && !preparedStatement.isClosed()) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                if (connection != null && !connection.isClosed()) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+
+        }
+        return DTOWifi;
     }
 }
+
+
+
 
