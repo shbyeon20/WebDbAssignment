@@ -20,7 +20,7 @@
     String LNT =request.getParameter("LNT");
     if (LAT != null && LNT != null) {
 
-        DTOWifi = dbService.WifiCloseSelect(LAT,LNT,"wifiinfo", 20);
+        DTOWifi = dbService.wifiCloseSelect(LAT,LNT,"wifiinfo", 20);
 
         tbPublicWifiInfo = DTOWifi.getTbPublicWifiInfo();
 
@@ -68,8 +68,8 @@
 
 <h1>와이파이 정보 구하기</h1>
 
-<a href="index.jsp">홈</a> | <a href="hello-servlet">위치_히스토리_목록</a> | <a href="load-wifi.jsp">Open API 와이파이 정보가져오기</a>
-| <a href="hello-servlet">북마크 보기</a> | <a href="hello-servlet">북마크 그룹관리</a>
+<a href="index.jsp">홈</a> | <a href="history.jsp">위치_히스토리_목록</a> | <a href="load-wifi.jsp">Open API 와이파이 정보가져오기</a>
+| <a href="bookmark-list.jsp">북마크 보기</a> | <a href="bookmark-group.jsp">북마크 그룹관리</a>
 
 <br><br>
 

@@ -10,21 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="426a51c0-35d5-4a51-86ef-f46a7b8fc9af" name="Changes" comment="dynamic db webpage start">
-      <change afterPath="$PROJECT_DIR$/src/main/java/API/DTOBookmark.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/API/DTOBookmarkGroup.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/Location.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/bookmark-delete.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/bookmark-group-add.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/bookmark-group-edit.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/bookmark-group.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/bookmark-list.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/detail.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/history.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/load-wifi.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/API/APIJsonReceive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/API/APIJsonReceive.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/API/DTOBookmark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/API/DTOBookmark.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/API/DTOBookmarkGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/API/DTOBookmarkGroup.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/API/DbService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/API/DbService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/API/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/API/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Location.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Location.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/bookmark-group.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/bookmark-group.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/detail.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -97,7 +90,7 @@
       <recent name="$PROJECT_DIR$/src/main/webapp" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 8.5.1001">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="DBupdate" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="DBupdate" />
       <module name="WebDbAssignment" />
@@ -204,6 +197,7 @@
       <workItem from="1720140807625" duration="39393000" />
       <workItem from="1720256268631" duration="17848000" />
       <workItem from="1720504998128" duration="44397000" />
+      <workItem from="1720615218983" duration="14219000" />
     </task>
     <task id="LOCAL-00001" summary="dynamic db webpage start">
       <option name="closed" value="true" />
@@ -213,7 +207,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720497244149</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="dynamic db webpage start">
+      <option name="closed" value="true" />
+      <created>1720615230873</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1720615230873</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -222,5 +224,26 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="dynamic db webpage start" />
     <option name="LAST_COMMIT_MESSAGE" value="dynamic db webpage start" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="javascript">
+          <url>file://$PROJECT_DIR$/src/main/webapp/Location.js</url>
+          <line>17</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/API/DbService.java</url>
+          <line>18</line>
+          <properties class="API.DbService" method="bookmarkDelete">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

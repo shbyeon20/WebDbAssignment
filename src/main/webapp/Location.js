@@ -19,16 +19,21 @@ function sendLocation() {
     var LAT = document.getElementById('LAT').value;
     var LNT = document.getElementById('LNT').value;
     if (LNT <= 0 || LAT <= 0) {
-        return console.log("wrong coordinate");
+        return console.log("wrong coordinate")
     }
 
-    var newUrl = `?LAT=${encodeURIComponent(LAT)}&LNT=${encodeURIComponent(LNT)}`;
-    window.history.pushState({ path: newUrl }, '', newUrl);
+    var newUrl = "?LAT="+encodeURIComponent(LAT)+"&LNT="+encodeURIComponent(LNT);
+    window.history.pushState({path: newUrl}, '', newUrl);
 
-    fetch(newUrl)
-        .then(response => response.text())  // Assuming the server responds with HTML
-        .then(html => {
-            document.getElementById('location').innerHTML = html;  // Updates the page content
-        })
-        .catch(error => console.error('Error', error));
+
+    fetch(newUrl, {
+        method: 'get'
+    }).then(response => {
+        // Optionally check if the request was successful
+        if (response.ok) {
+            console.log("Data was successfully sent to the server.");
+        } else {
+            console.error("Failed to send data.");
+        }
+    }).catch(error => console.error('Error', error));
 }

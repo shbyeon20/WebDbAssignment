@@ -51,7 +51,7 @@
     List<DTOWifi.WifiInfo> wifiInfos;
 
     String wifiNo = request.getParameter("wifiNo");
-    DTOWifi = dbService.WifiOneSelect("wifiinfo", 1, wifiNo);
+    DTOWifi = dbService.wifiOneSelect("wifiinfo", 1, wifiNo);
     tbPublicWifiInfo = DTOWifi.getTbPublicWifiInfo();
     wifiInfos = tbPublicWifiInfo.getList();
 
