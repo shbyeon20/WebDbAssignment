@@ -28,12 +28,9 @@ function sendLocation() {
 
     fetch(newUrl, {
         method: 'get'
-    }).then(response => {
-        // Optionally check if the request was successful
-        if (response.ok) {
-            console.log("Data was successfully sent to the server.");
-        } else {
-            console.error("Failed to send data.");
-        }
-    }).catch(error => console.error('Error', error));
+    }).then(response => response.text()) // Convert the response into text
+        .then(html => {
+            document.getElementById('html').innerHTML = html; // Updates the HTML content
+        })
+    .catch(error => console.error('Error', error));
 }

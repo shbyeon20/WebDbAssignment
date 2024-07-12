@@ -7,7 +7,7 @@ public class DTOBookmarkGroup {
 
     List<BookmarkGroupInfo> bookmarkGroups;
 
-    static class BookmarkGroupInfo {
+    public static class BookmarkGroupInfo {
     String groupId;
     String name;
     String sequenceOrder;

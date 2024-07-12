@@ -18,6 +18,7 @@
 
     String LAT =request.getParameter("LAT");
     String LNT =request.getParameter("LNT");
+
     if (LAT != null && LNT != null) {
 
         DTOWifi = dbService.wifiCloseSelect(LAT,LNT,"wifiinfo", 20);
@@ -31,7 +32,7 @@
 %>
 
 <!DOCTYPE html>
-<html>
+<html id = "html">
 <head>
     <title>JSP - Hello World</title>
     <meta charset="UTF-8">
@@ -84,12 +85,14 @@
 
 
 <script src=Location.js></script>
+<script src=history.js></script>
 
 <br><br>
 
-<table>
+<table id = "table">
     <thead>
     <tr>
+        <th>Distance</th>
         <th>Manager No</th>
         <th>Ward Office</th>
         <th>Main Name</th>
@@ -108,18 +111,20 @@
         <th>Work Date</th>
     </tr>
     </thead>
-    <tbody>
-    <tr>
+    <tbody id = "tbody">
+
             <% if (wifiInfos != null && !wifiInfos.isEmpty()) {
         for (DTOWifi.WifiInfo wifiInfo : wifiInfos) {
+            System.out.println(wifiInfo.getDistance());
         %>
     <tr>
-        <td><% out.write(wifiInfo.getX_SWIFI_MGR_NO());
-        %>
+        <td><%=wifiInfo.getDistance()%>
+        </td>
+        <td><%=wifiInfo.getX_SWIFI_MGR_NO()%>
         </td>
         <td><%= wifiInfo.getX_SWIFI_WRDOFC() %>
         </td>
-        <td><a href="detail.jsp?wifiNo=<%=wifiInfo.getX_SWIFI_MGR_NO()%>"><%= wifiInfo.getX_SWIFI_MAIN_NM() %>
+        <td><a href="detail.jsp?wifiNo=<%=wifiInfo.getX_SWIFI_MGR_NO()%>" onclick="logHistoryAndRedirect( <%=wifiInfo.getLAT()%>, <%=wifiInfo.getLNT()%>);"><%=wifiInfo.getX_SWIFI_MAIN_NM()%>
         </a></td>
         <td><%= wifiInfo.getX_SWIFI_ADRES1() %>
         </td>

@@ -46,18 +46,23 @@
 <%
     DbService dbService = DbService.getInstance();
 
-    DTOWifi DTOWifi;
+    DTOWifi dtoWifi;
     DTOWifi.TbPublicWifiInfo tbPublicWifiInfo;
     List<DTOWifi.WifiInfo> wifiInfos;
 
     String wifiNo = request.getParameter("wifiNo");
-    DTOWifi = dbService.wifiOneSelect("wifiinfo", 1, wifiNo);
-    tbPublicWifiInfo = DTOWifi.getTbPublicWifiInfo();
+    dtoWifi = dbService.wifiOneSelect("wifiinfo", 1, wifiNo);
+    tbPublicWifiInfo = dtoWifi.getTbPublicWifiInfo();
     wifiInfos = tbPublicWifiInfo.getList();
+    System.out.println(wifiInfos);
 
 %>
+<select>
+    <
+</select>
+<input type="button" text="북마크 추가하기">
 
-<% for (DTOWifi.WifiInfo wifiInfo : wifiInfos) { %>
+<% for (DTOWifi.WifiInfo wifiInfo : wifiInfos) {%>
 <table>
     <tr>
         <th>Manager No</th>

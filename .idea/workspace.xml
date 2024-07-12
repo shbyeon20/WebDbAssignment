@@ -10,14 +10,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="426a51c0-35d5-4a51-86ef-f46a7b8fc9af" name="Changes" comment="dynamic db webpage start">
+      <change afterPath="$PROJECT_DIR$/src/main/java/API/DTOHistory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/bookmark-group-add-submit.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/bookmark-group-delete.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/bookmark-group-edit-submit.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/history-delete.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/history.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/loghistory.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/API/DTOBookmark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/API/DTOBookmark.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/API/DTOBookmarkGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/API/DTOBookmarkGroup.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/API/DbService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/API/DbService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/API/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/API/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/Location.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Location.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/bookmark-group-add.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/bookmark-group-add.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/bookmark-group-edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/bookmark-group-edit.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/bookmark-group.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/bookmark-group.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/detail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/history.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/history.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -30,8 +40,8 @@
       <list>
         <option value="HTML File" />
         <option value="JavaScript File" />
-        <option value="Jsp File" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -63,41 +73,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.DBupdate.executor&quot;: &quot;Debug&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;JavaScript Debug.example.html (1).executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.example.html.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Tomcat Server.Tomcat 8.5.1001.executor&quot;: &quot;Run&quot;,
-    &quot;Tomcat Server.index.jsp.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.DBupdate.executor": "Debug",
+    "Application.Main.executor": "Run",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "JavaScript Debug.bookmark-group-add-submit.jsp.executor": "Run",
+    "JavaScript Debug.bookmark-group-add.jsp.executor": "Run",
+    "JavaScript Debug.bookmark-group-delete.jsp.executor": "Run",
+    "JavaScript Debug.bookmark-group-edit-submit.jsp.executor": "Run",
+    "JavaScript Debug.bookmark-group-edit.jsp.executor": "Run",
+    "JavaScript Debug.bookmark-group.jsp.executor": "Run",
+    "JavaScript Debug.example.html (1).executor": "Run",
+    "JavaScript Debug.example.html.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Tomcat Server.Tomcat 8.5.1001.executor": "Run",
+    "Tomcat Server.index.jsp.executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/byeonsanghwa/Desktop/ Programming Material/JavaDev/webJavaBuild/WebDbAssignment/src/main/webapp",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "MavenSettings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/webapp" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/webapp" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration name="DBupdate" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="DBupdate" />
-      <module name="WebDbAssignment" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Tomcat Server.Tomcat 8.5.1001">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="API.Main" />
       <module name="WebDbAssignment" />
@@ -105,10 +118,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="example.html (1)" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/WebDbAssignment_war_exploded/WEB-INF/example.html">
+    <configuration name="bookmark-group-delete.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/WebDbAssignment_war_exploded/bookmark-group-delete.jsp">
       <method v="2" />
     </configuration>
-    <configuration name="example.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/WebDbAssignment/src/main/webapp/example.html" useBuiltInWebServerPort="true">
+    <configuration name="bookmark-group-edit-submit.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/WebDbAssignment_war_exploded/bookmark-group-edit-submit.jsp">
+      <method v="2" />
+    </configuration>
+    <configuration name="bookmark-group-edit.jsp" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:8080/WebDbAssignment_war_exploded/bookmark-group-edit.jsp">
+      <method v="2" />
+    </configuration>
+    <configuration name="history.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/main/webapp/history.js" working-dir="$PROJECT_DIR$/src/main/webapp">
       <method v="2" />
     </configuration>
     <configuration name="Tomcat 8.5.1001" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.1001" ALTERNATIVE_JRE_ENABLED="false">
@@ -171,9 +190,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="JavaScript Debug.example.html (1)" />
-        <item itemvalue="JavaScript Debug.example.html" />
-        <item itemvalue="Application.DBupdate" />
+        <item itemvalue="Node.js.history.js" />
+        <item itemvalue="JavaScript Debug.bookmark-group-edit-submit.jsp" />
+        <item itemvalue="JavaScript Debug.bookmark-group-edit.jsp" />
+        <item itemvalue="JavaScript Debug.bookmark-group-delete.jsp" />
       </list>
     </recent_temporary>
   </component>
@@ -197,7 +217,8 @@
       <workItem from="1720140807625" duration="39393000" />
       <workItem from="1720256268631" duration="17848000" />
       <workItem from="1720504998128" duration="44397000" />
-      <workItem from="1720615218983" duration="14219000" />
+      <workItem from="1720615218983" duration="14230000" />
+      <workItem from="1720686816211" duration="40821000" />
     </task>
     <task id="LOCAL-00001" summary="dynamic db webpage start">
       <option name="closed" value="true" />
@@ -215,7 +236,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720615230873</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="dynamic db webpage start">
+      <option name="closed" value="true" />
+      <created>1720672592049</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1720672592049</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -228,20 +257,15 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" log-message="true" suspend="NONE" type="javascript">
-          <url>file://$PROJECT_DIR$/src/main/webapp/Location.js</url>
-          <line>17</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
+        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/API/DbService.java</url>
-          <line>18</line>
-          <properties class="API.DbService" method="bookmarkDelete">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="5" />
+          <line>57</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/API/DbService.java</url>
+          <line>167</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

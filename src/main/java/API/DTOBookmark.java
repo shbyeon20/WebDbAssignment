@@ -10,16 +10,16 @@ public class DTOBookmark {
 
      static class BookmarkInfo{
 
-        private String bookmarkId;
+        private int bookmarkId;
         private String bookmarkGroup;  // foreign key from group db
         private String X_SWIFI_MGR_NO; // foreign key from wi-fi db
         private String registerDate;
 
-        public String getBookmarkId() {
+        public int getBookmarkId() {
             return this.bookmarkId;
         }
 
-        public void setBookmarkId(String bookmarkId) {
+        public void setBookmarkId(int bookmarkId) {
             this.bookmarkId = bookmarkId;
         }
 
