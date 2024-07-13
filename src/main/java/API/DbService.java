@@ -1,7 +1,5 @@
 package API;
 
-import org.apache.cxf.bus.managers.ClientLifeCycleManagerImpl;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -178,7 +176,7 @@ public class DbService {
             connection = DriverManager.getConnection(url, user, DBpassword);
 
             // Get the next history ID
-            String sql = "SELECT MAX(historyId) + 1 AS nextId FROM wifiHistory;";
+            String sql = "SELECT COALESCE(MAX(historyId),0) + 1 AS nextId FROM wifiHistory;";
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
             int nextId = 1; // default to 1 if no records exist
@@ -213,6 +211,70 @@ public class DbService {
         }
     }
 
+    public void insertBookmark(String wifiMgrNo, String bookmarkGroupId) {
+        String url = "jdbc:mariadb://localhost:3306/seoulwifi";
+        String user = "wifiuser";
+        String DBpassword = "!tkdghk6226";
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+            connection = DriverManager.getConnection(url, user, DBpassword);
+
+            // Get the next bookmark ID
+            String sql = "SELECT COALESCE(MAX(bookmarkId), 0) + 1 AS nextId FROM bookmark;";
+            preparedStatement = connection.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+            int nextId = 1; // default to 1 if no records exist
+           if (resultSet.next()) {
+            nextId = resultSet.getInt("nextId");
+               System.out.println(nextId);
+            }
+
+
+
+            sql = "SELECT name FROM bookmarkGroup where groupId = ?;";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(Integer.valueOf(1),bookmarkGroupId);
+            resultSet = preparedStatement.executeQuery();
+            String bookmarkGroupName = null; // default to 1 if no records exist
+            if (resultSet.next()) {
+                bookmarkGroupName = resultSet.getString("name");
+            }
+
+
+            resultSet.close();
+            preparedStatement.close();
+
+            // Insert the new bookmark record
+            sql = "INSERT INTO bookmark (bookmarkId, X_SWIFI_MGR_NO, bookmarkGroupId, registerDate, bookmarkGroupName) VALUES (?, ?, ?, NOW(), ?);";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(Integer.valueOf(1), nextId);
+            preparedStatement.setString(Integer.valueOf(2), wifiMgrNo);
+            preparedStatement.setString(Integer.valueOf(3), bookmarkGroupId);
+            preparedStatement.setString(Integer.valueOf(4), bookmarkGroupName);
+
+
+            int affected = preparedStatement.executeUpdate();
+            if (affected > 0) {
+                System.out.println("Bookmark insertion successful.");
+            } else {
+                System.out.println("Bookmark insertion failed.");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to insert bookmark record", e);
+        } finally {
+            try {
+                if (preparedStatement != null) preparedStatement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException("Failed to close resources", e);
+            }
+        }
+    }
 
 
     public void bookmarkGroupInsert(DTOBookmarkGroup dtoBookmarkGroup) {
@@ -333,6 +395,56 @@ public class DbService {
     }
 
 
+    public DTOBookmark bookmarkSelect() {
+        String url = "jdbc:mariadb://localhost:3306/seoulwifi";
+        String user = "wifiuser";
+        String DBpassword = "!tkdghk6226";
+
+        DTOBookmark dtoBookmark = new DTOBookmark();
+        List<DTOBookmark.BookmarkInfo> list = new ArrayList<>();
+
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = DriverManager.getConnection(url, user, DBpassword);
+
+            String sql = "SELECT t1.bookmarkId, t1.X_SWIFI_MGR_NO, t2.name as bookmarkGroupName , t1.registerDate FROM bookmark t1\n" +
+                    "join bookmarkGroup t2 on t1.bookmarkGroupId = t2.groupId ORDER BY registerDate DESC;";
+            preparedStatement = connection.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                DTOBookmark.BookmarkInfo bookmarkInfo = new DTOBookmark.BookmarkInfo();
+                bookmarkInfo.setBookmarkId(resultSet.getInt("bookmarkId"));
+                bookmarkInfo.setX_SWIFI_MGR_NO(resultSet.getString("X_SWIFI_MGR_NO"));
+                bookmarkInfo.setBookmarkGroupName(resultSet.getString("bookmarkGroupname"));
+                bookmarkInfo.setRegisterDate(resultSet.getString("registerDate"));
+                list.add(bookmarkInfo);
+            }
+            dtoBookmark.setBookmarks(list);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            try {
+                if (resultSet != null) resultSet.close();
+                if (preparedStatement != null) preparedStatement.close();
+                if (connection != null) connection.close();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return dtoBookmark;
+    }
+
+
     public DTOBookmarkGroup bookmarkGroupSelect() {
         String url = "jdbc:mariadb://localhost:3306/seoulwifi";
 
@@ -404,79 +516,7 @@ public class DbService {
         return dtoBookmarkGroup;
     }
 
-    public DTOBookmark bookmarkSelect(int groupid) {
-        String url = "jdbc:mariadb://localhost:3306/seoulwifi";
 
-        String user = "wifiuser";
-        String DBpassword = "!tkdghk6226";
-
-
-        DTOBookmark dtoBookmark = new DTOBookmark();
-        List<DTOBookmark.BookmarkInfo> list = new ArrayList<>();
-
-
-        try {
-            Class.forName("org.mariadb.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-
-        try {
-            connection = DriverManager.getConnection(url, user, DBpassword);
-
-            String sql = "SELECT bookmarkId ,X_SWIFI_MGR_NO, registerDate from bookmark b\n" +
-                    "where bookmarkGroupId = ?;";
-
-            preparedStatement = connection.prepareStatement(sql);
-            preparedStatement.setInt(1, groupid);
-
-            resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                DTOBookmark.BookmarkInfo bookmarkInfo = new DTOBookmark.BookmarkInfo();
-                bookmarkInfo.setBookmarkId(resultSet.getInt("bookmarkId"));
-                bookmarkInfo.setX_SWIFI_MGR_NO(resultSet.getString("X_SWIFI_MGR_NO"));
-                bookmarkInfo.setRegisterDate(resultSet.getString("registerDate"));
-                list.add(bookmarkInfo);
-            }
-            dtoBookmark.setBookmarks(list);
-
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } finally {
-
-            try {
-                if (resultSet != null && !resultSet.isClosed()) {
-                    resultSet.close();
-                }
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-
-            try {
-                if (preparedStatement != null && !preparedStatement.isClosed()) {
-                    preparedStatement.close();
-                }
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-            try {
-                if (connection != null && !connection.isClosed()) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-
-
-        }
-        return dtoBookmark;
-    }
 
     public DTOWifi wifiCloseSelect(String LAT, String LNT, String tablename, int pagenum) {
         String url = "jdbc:mariadb://localhost:3306/seoulwifi";
@@ -504,10 +544,10 @@ public class DbService {
             connection = DriverManager.getConnection(url, user, DBpassword);
 
             String sql = String.format("SELECT \n" +
-                    " SQRT(POW(LAT - %s, 2) + POW(LNT - %s, 2)) AS Distance,\n" +
+                    " FORMAT(SQRT(POW(LAT - %s, 2) + POW(LNT - %s, 2)),5) AS Distance,\n" +
                     " w.*\n" +
                     "FROM %s w\n" +
-                    "ORDER BY distance\n" +
+                    "ORDER BY Distance\n" +
                     "LIMIT %d;", LAT, LNT, tablename, pagenum);
 
             preparedStatement = connection.prepareStatement(sql);
@@ -515,7 +555,7 @@ public class DbService {
 
             while (resultSet.next()) {
                 DTOWifi.WifiInfo wifiInfo = new DTOWifi.WifiInfo();
-                wifiInfo.setDistance(resultSet.getDouble("Distance"));
+                wifiInfo.setDistance(resultSet.getString("Distance"));
                 wifiInfo.setX_SWIFI_MGR_NO(resultSet.getString("X_SWIFI_MGR_NO"));
                 wifiInfo.setX_SWIFI_WRDOFC(resultSet.getString("X_SWIFI_WRDOFC"));
                 wifiInfo.setX_SWIFI_MAIN_NM(resultSet.getString("X_SWIFI_MAIN_NM"));

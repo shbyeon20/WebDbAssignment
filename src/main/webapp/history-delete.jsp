@@ -6,8 +6,11 @@
 
     try {
         dbService.deleteHistory(historyId);
-        out.println("<script>alert('삭제성공'); window.location = 'history.jsp';</script>");
+        response.sendRedirect("history.jsp");
     } catch (Exception e) {
         out.println("<script>alert('삭제실패'); window.location = 'history.jsp';</script>");
+        response.sendRedirect("history.jsp");
+
     }
+
 %>

@@ -80,7 +80,7 @@
 <label for="LNT">, LNT: </label>
 <input type="text" id="LNT" size="10">
 <input type="button" value="내 위치 가져오기" onclick="getLocation()">
-<input type="button" value="근처 WPI 정보 보기" onclick="sendLocation()">
+<input type="button" value="근처 WPI 정보 보기" onclick="logHistoryAndRedirect(document.getElementById('LAT').value, document.getElementById('LNT').value); sendLocation(); ">
 <div id="location"></div>  <!-- if getlocation fail, error message to come out -->
 
 
@@ -124,7 +124,7 @@
         </td>
         <td><%= wifiInfo.getX_SWIFI_WRDOFC() %>
         </td>
-        <td><a href="detail.jsp?wifiNo=<%=wifiInfo.getX_SWIFI_MGR_NO()%>" onclick="logHistoryAndRedirect( <%=wifiInfo.getLAT()%>, <%=wifiInfo.getLNT()%>);"><%=wifiInfo.getX_SWIFI_MAIN_NM()%>
+        <td><a href="detail.jsp?wifiNo=<%=wifiInfo.getX_SWIFI_MGR_NO()%>" ><%=wifiInfo.getX_SWIFI_MAIN_NM()%>
         </a></td>
         <td><%= wifiInfo.getX_SWIFI_ADRES1() %>
         </td>

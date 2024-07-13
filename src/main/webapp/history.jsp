@@ -45,6 +45,7 @@
     </thead>
     <tbody>
     <%
+        // 히스토리 모든 정보 끌어오기
         DbService dbService = DbService.getInstance();
         DTOHistory dtoHistory = dbService.historySelect();
         List<DTOHistory.HistoryInfo> historyInfos = dtoHistory.getHistoryInfos();

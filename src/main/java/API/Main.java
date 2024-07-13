@@ -13,12 +13,14 @@ public class Main {
 
         DbService dbService = DbService.getInstance();
 
-        DTOHistory dtoHistory = dbService.historySelect();
-        List<DTOHistory.HistoryInfo> list = dtoHistory.getHistoryInfos();
-        for (DTOHistory.HistoryInfo historyInfo : list) {
-            System.out.println(historyInfo.getId());
+        dbService.insertBookmark("123","1");
+        DTOBookmark dtoBookmark = dbService.bookmarkSelect();
+        List<DTOBookmark.BookmarkInfo> bookmarks = dtoBookmark.getBookmarks();
+        for (DTOBookmark.BookmarkInfo bookmark : bookmarks) {
+            System.out.println(bookmark.getBookmarkGroupId());
 
         }
+
 
         /*
         // wifi detailed information showing test

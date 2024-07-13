@@ -2,7 +2,6 @@
 <%
     double lat = Double.parseDouble(request.getParameter("lat"));
     double lng = Double.parseDouble(request.getParameter("lng"));
-    System.out.println(lat);
     DbService dbService = DbService.getInstance();
     dbService.insertHistory( lat, lng);
 

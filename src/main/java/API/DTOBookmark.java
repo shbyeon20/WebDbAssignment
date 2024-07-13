@@ -8,12 +8,22 @@ public class DTOBookmark {
 
     private List<BookmarkInfo> bookmarks;
 
-     static class BookmarkInfo{
+    public static class BookmarkInfo {
 
         private int bookmarkId;
-        private String bookmarkGroup;  // foreign key from group db
+        private int bookmarkGroupId;  // foreign key from group db
         private String X_SWIFI_MGR_NO; // foreign key from wi-fi db
         private String registerDate;
+
+        public String getBookmarkGroupName() {
+            return bookmarkGroupName;
+        }
+
+        public void setBookmarkGroupName(String bookmarkGroupName) {
+            this.bookmarkGroupName = bookmarkGroupName;
+        }
+
+        private String bookmarkGroupName;
 
         public int getBookmarkId() {
             return this.bookmarkId;
@@ -23,12 +33,12 @@ public class DTOBookmark {
             this.bookmarkId = bookmarkId;
         }
 
-        public String getBookmarkGroup() {
-            return this.bookmarkGroup;
+        public int getBookmarkGroupId() {
+            return this.bookmarkGroupId;
         }
 
-        public void setBookmarkGroup(String bookmarkGroup) {
-            this.bookmarkGroup = bookmarkGroup;
+        public void setBookmarkGroupId(int bookmarkGroupId) {
+            this.bookmarkGroupId = bookmarkGroupId;
         }
 
         public String getX_SWIFI_MGR_NO() {
@@ -39,7 +49,7 @@ public class DTOBookmark {
             X_SWIFI_MGR_NO = x_SWIFI_MGR_NO;
         }
 
-        public String getRegisterDate(String registerDate) {
+        public String getRegisterDate() {
             return this.registerDate;
         }
 
