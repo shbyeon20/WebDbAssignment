@@ -10,19 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="426a51c0-35d5-4a51-86ef-f46a7b8fc9af" name="Changes" comment="dynamic db webpage start">
-      <change afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/API/DTOBookmark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/API/DTOBookmark.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/API/DbService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/API/DbService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/API/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/API/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/bookmark-delete.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/bookmark-delete.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/bookmark-group-delete.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/bookmark-group-delete.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/bookmark-list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/bookmark-list.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/history-delete.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/history-delete.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/history.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/history.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/loghistory.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/loghistory.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,6 +202,8 @@
       <workItem from="1720504998128" duration="44397000" />
       <workItem from="1720615218983" duration="14230000" />
       <workItem from="1720686816211" duration="72644000" />
+      <workItem from="1720875513395" duration="18000" />
+      <workItem from="1720918910767" duration="2203000" />
     </task>
     <task id="LOCAL-00001" summary="dynamic db webpage start">
       <option name="closed" value="true" />
@@ -246,7 +237,15 @@
       <option name="project" value="LOCAL" />
       <updated>1720771401379</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="dynamic db webpage start">
+      <option name="closed" value="true" />
+      <created>1720875526192</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1720875526192</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -721,7 +721,7 @@ public class DbService {
 
         try {
             connection = DriverManager.getConnection(url, user, DBpassword);
-            String sql = "SELECT historyId, lat, lng, queryTime FROM wifihistory ORDER BY queryTime DESC;";
+            String sql = "SELECT historyId, lat, lng, queryTime FROM wifihistory ORDER BY historyId;";
             preparedStatement = connection.prepareStatement(sql);
             resultSet = preparedStatement.executeQuery();
 
